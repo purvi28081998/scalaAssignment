@@ -1,0 +1,1 @@
+const images = {jeans:"https://okhai.org/cdn/shop/products/Okhai4290hero1.jpg?v=1668349552","t-shirt":"https://okhai.org/cdn/shop/products/Okhai4290hero1.jpg?v=1668349552","apron":"https://okhai.org/cdn/shop/products/Okhai4290hero1.jpg?v=1668349552","shirt":"https://okhai.org/cdn/shop/products/Okhai4290hero1.jpg?v=1668349552",}

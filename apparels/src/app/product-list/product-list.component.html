@@ -1,0 +1,11 @@
+<div style="display: flex;">
+<div *ngFor="let product of products">
+    <img style="width: 200px; height: 200px;" [src]="'http://35.200.157.92:9007/imagenew/' + product.id"
+    />
+    <h3>{{ product.name }}</h3>
+    <p>{{ product.description }}</p>
+    <p><strong>Price: ${{ product.price }}</strong></p>
+    <p><strong>Stock: {{ product.stock }}</strong></p>
+    <button (click)="addToCart(product)">Add to Cart</button>
+  </div>
+</div>

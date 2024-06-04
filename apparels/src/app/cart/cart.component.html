@@ -1,0 +1,10 @@
+<div style="display: flex;">
+  <div *ngFor="let product of products">
+    <img style="width: 200px; height: 200px;" [src]="'http://35.200.157.92:9007/imagenew/' + product.apparelID"
+    />
+      <h3>{{ product.name }}</h3>
+      <p>Quantity {{ product.quantity }}</p>
+      <p><strong>Price: ${{ product.price }}</strong></p>
+      <button (click)="deleteCart(product)">Delete Cart</button>
+    </div>
+</div>
