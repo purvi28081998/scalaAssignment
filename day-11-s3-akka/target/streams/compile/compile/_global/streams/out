@@ -1,0 +1,7 @@
+[0m[[0m[33mwarn[0m] [0m[0m/Users/purvigupta/Downloads/s3-akka/src/main/scala/FileUpload.scala:42:18: Implicit definition should have explicit type (inferred spray.json.RootJsonFormat[FileUpload.FileNamePayload]) [quickfixable][0m
+[0m[[0m[33mwarn[0m] [0m[0m    implicit val fileNameFormat = jsonFormat1(FileNamePayload)[0m
+[0m[[0m[33mwarn[0m] [0m[0m                 ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/purvigupta/Downloads/s3-akka/src/main/scala/FileUpload.scala:37:16: Implicit definition should have explicit type (inferred scala.concurrent.ExecutionContextExecutor) [quickfixable][0m
+[0m[[0m[33mwarn[0m] [0m[0m  implicit val executionContext = system.dispatcher[0m
+[0m[[0m[33mwarn[0m] [0m[0m               ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mtwo warnings found[0m
