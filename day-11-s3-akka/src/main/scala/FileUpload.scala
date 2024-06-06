@@ -22,8 +22,8 @@ object FileUpload extends App {
   val config = ConfigFactory.load()
   val bucketName = "akka-bucket-scala"
   val region = "eu-north-1"
-  val accessKeyId = "AKIAQ3EGV4V3LMJMLVVF"
-  val secretAccessKey = "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"
+  val accessKeyId = "**********"
+  val secretAccessKey = "************"
 
   // Setup S3 Client
   val awsCreds = AwsBasicCredentials.create(accessKeyId, secretAccessKey)
