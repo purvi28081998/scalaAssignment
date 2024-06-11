@@ -1,0 +1,15 @@
+[0m[[0m[0mdebug[0m] [0m[0mPackaging /Users/purvigupta/Downloads/s3-akka/target/scala-2.13/day_11_task_2.13-0.1.0-SNAPSHOT.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FileUpload$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/purvigupta/Downloads/s3-akka/target/scala-2.13/classes/FileUpload$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FileUpload$FileNamePayload.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/purvigupta/Downloads/s3-akka/target/scala-2.13/classes/FileUpload$FileNamePayload.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FileUpload.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/purvigupta/Downloads/s3-akka/target/scala-2.13/classes/FileUpload.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FileUpload$FileNamePayload$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/purvigupta/Downloads/s3-akka/target/scala-2.13/classes/FileUpload$FileNamePayload$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FileUpload$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/purvigupta/Downloads/s3-akka/target/scala-2.13/classes/FileUpload$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	FileUpload$FileNameJsonProtocol$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/purvigupta/Downloads/s3-akka/target/scala-2.13/classes/FileUpload$FileNameJsonProtocol$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m
