@@ -1,0 +1,69 @@
+import org.apache.hadoop.shaded.org.eclipse.jetty.util.ajax.JSON
+import org.apache.spark.sql.{Row, SaveMode, SparkSession}
+import org.apache.spark.sql.functions._
+import org.apache.spark.sql.types.{StringType, StructType}
+object hdfs_to_db {
+  def main(args: Array[String]): Unit = {
+    val spark = SparkSession.builder()
+      .appName("CSV to JSON Converter")
+      .master("local[*]")
+      .getOrCreate()
+
+    import org.apache.log4j.Logger
+
+    import org.apache.log4j.Level
+
+    Logger.getLogger("org").setLevel(Level.EROR)
+    Logger.getLogger("akka").setLevel(Level.ERROR)
+    import spark.implicits._
+    case class Dept(deptID :Any,deptName: Any)
+    case class Emp(empID :Any,empName: Any)
+    val deptData = Seq(
+      Row("dept1", "engg"),
+      Row("dept2", "sales"))
+    val empData = Seq(
+      Row("dept1","emp2", "Anne") ,
+      Row("dept2","emp2", "bob") ,
+      Row("dept2","emp3", "caroline")
+    )
+
+    val deptSchema = new StructType()
+      .add("deptID",StringType)
+      .add("deptName",StringType)
+
+    //var containerMap : Map(Dept,List[Emp]) = ()
+    val empSchema = new StructType()
+      .add("deptID",StringType)
+      .add("empID",StringType)
+      .add("empName",StringType)
+
+
+
+    val dfDept = spark.createDataFrame(spark.sparkContext.parallelize(deptData),deptSchema)
+    val dfEmp = spark.createDataFrame(spark.sparkContext.parallelize(empData),empSchema)
+    //dfDept.map(Row(a,b) => containerMap(Dept(a,b)) = List())
+
+
+    val empAgg = dfEmp.groupBy("deptID")
+      .agg(collect_list("empID"),collect_list("empName").alias("empName"))
+    empAgg.show()
+
+    var newmap = dfEmp.collect.map(a=>(a(0)->List())).toMap.asInstanceOf[Map[String,List[String]]]
+    println(newmap)
+
+    val empMap = dfEmp.collect().groupBy(_.getString(0)).map {
+      case (deptID, rows) => deptID -> rows.map(row => (row.getString(1), row.getString(2))).toList
+    }
+    println(empMap)
+    dfEmp.collect.map(a=> newmap(a(0).toString) :+ Emp(a(1),a(2)).toString)
+    println(newmap)
+    //dfEmp.collect.map(a=>(a(0)->List(a(1),a(2)))).toMap.asInstanceOf[Map[String,String]]
+
+
+    //val df = dfDept.as("d").join(dfEmp.as("e"),($"d.deptID" === $"e.deptID"))
+    //df.toJSON.show(false)
+
+
+  }
+}
+
