@@ -1,0 +1,259 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\froman\fcharset0 Times-Bold;\f1\froman\fcharset0 Times-Roman;\f2\fmodern\fcharset0 Courier;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid201\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid3}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww34360\viewh21600\viewkind0
+\deftab720
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\b\fs32 \cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 RDDs (Resilient Distributed Datasets)\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs28 \cf0 RDDs are the fundamental data structures of Spark. They offer low-level functionalities and are suitable for unstructured data or scenarios requiring fine-grained control over computations.\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b \cf0 Example Use Case
+\f1\b0 : Calculating Word Count\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \outl0\strokewidth0 ################################################################################################################ code begins ######################################################################################################################\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \outl0\strokewidth0 \strokec2 import org.apache.spark.\{SparkConf, SparkContext\}\
+object RDDWordCount \{\
+  def main(args: Array[String]): Unit = \{\
+    val conf = new SparkConf().setAppName("RDD Word Count").setMaster("local[*]")\
+    val sc = new SparkContext(conf)\
+    // Load text file into RDD\
+    val lines = sc.textFile("input.txt")\
+    // Split each line into words\
+    val words = lines.flatMap(_.split(" "))\
+    // Map each word to (word, 1) tuple for counting\
+    val wordCounts = words.map(word => (word, 1))\
+    // Reduce by key to get word counts\
+    val result = wordCounts.reduceByKey(_ + _)\
+    // Save the result to a file\
+    result.saveAsTextFile("output")\
+    sc.stop()\
+  \}\
+\}\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \outl0\strokewidth0 ################################################################################################################ code ends ############################################################################################################################\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \outl0\strokewidth0 \strokec2 \
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b \cf0 Operators and Actions
+\f1\b0 :\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0
+\f2\fs30 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 textFile("input.txt")
+\f1\fs28 : Action to read lines from an input file into RDD 
+\f2\fs30 lines
+\f1\fs28 .\
+\ls1\ilvl0
+\f2\fs30 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 flatMap(_.split(" "))
+\f1\fs28 : Transformation to split lines into words.\
+\ls1\ilvl0
+\f2\fs30 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 map(word => (word, 1))
+\f1\fs28 : Transformation to map each word to a tuple 
+\f2\fs30 (word, 1)
+\f1\fs28 .\
+\ls1\ilvl0
+\f2\fs30 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 reduceByKey(_ + _)
+\f1\fs28 : Transformation to aggregate counts by summing values for each key (word).\
+\ls1\ilvl0
+\f2\fs30 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 saveAsTextFile("output")
+\f1\fs28 : Action to save the final RDD 
+\f2\fs30 result
+\f1\fs28  to an output file.\
+\pard\tx720\pardeftab720\partightenfactor0
+\cf0 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------\outl0\strokewidth0 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\outl0\strokewidth0 \strokec2 \
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\b\fs32 \cf0 \strokec2 DataFrames\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs28 \cf0 DataFrames provide a higher-level abstraction built on top of RDDs, offering a more structured and SQL-like interface. They are suitable for structured data processing.\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b \cf0 Example Use Case
+\f1\b0 : Analyzing Sales Data\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \outl0\strokewidth0 ####################################################################################################### code begins ##################################################################################################################################\outl0\strokewidth0 \strokec2 \
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 import org.apache.spark.sql.\{SparkSession, DataFrame\}\
+object DataFrameAnalysis \{\
+  def main(args: Array[String]): Unit = \{\
+    val spark = SparkSession.builder\
+      .appName("DataFrame Analysis")\
+      .master("local[*]")\
+      .getOrCreate()\
+    import spark.implicits._\
+    // Load CSV data into DataFrame\
+    val salesDF = spark.read.option("header", "true").csv("sales.csv")\
+    // Perform analysis: calculate total sales amount by product category\
+    val totalSalesByCategory = salesDF.groupBy("product_category")\
+      .agg(sum("sales_amount").as("total_sales_amount"))\
+      .orderBy($"total_sales_amount".desc)\
+    // Show results\
+    totalSalesByCategory.show()\
+    // Save results to parquet file\
+    totalSalesByCategory.write.parquet("total_sales_by_category.parquet")\
+    spark.stop()\
+  \}\
+\}\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \outl0\strokewidth0 ############################################################################################### code ends #########################################################################################################################################\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b \cf0 \outl0\strokewidth0 \strokec2 Operators and Actions
+\f1\b0 :\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls2\ilvl0
+\f2\fs30 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 read.option("header", "true").csv("sales.csv")
+\f1\fs28 : Action to read CSV file into a DataFrame 
+\f2\fs30 salesDF
+\f1\fs28 .\
+\ls2\ilvl0
+\f2\fs30 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 groupBy("product_category")
+\f1\fs28 : Transformation to group data by 
+\f2\fs30 product_category
+\f1\fs28 .\
+\ls2\ilvl0
+\f2\fs30 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 agg(sum("sales_amount").as("total_sales_amount"))
+\f1\fs28 : Transformation to aggregate sales amount by summing 
+\f2\fs30 sales_amount
+\f1\fs28 .\
+\ls2\ilvl0
+\f2\fs30 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 orderBy($"total_sales_amount".desc)
+\f1\fs28 : Transformation to sort results by 
+\f2\fs30 total_sales_amount
+\f1\fs28  in descending order.\
+\ls2\ilvl0
+\f2\fs30 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 show()
+\f1\fs28 : Action to display results.\
+\ls2\ilvl0
+\f2\fs30 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 write.parquet("total_sales_by_category.parquet")
+\f1\fs28 : Action to write the DataFrame 
+\f2\fs30 totalSalesByCategory
+\f1\fs28 to a Parquet file.\
+\pard\tx720\pardeftab720\partightenfactor0
+\cf0 \outl0\strokewidth0 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\b\fs32 \cf0 \outl0\strokewidth0 \strokec2 Datasets\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs28 \cf0 Datasets combine the benefits of RDDs and DataFrames by offering type safety and functional programming APIs. They are suitable for both structured and semi-structured data.\
+
+\f0\b Example Use Case
+\f1\b0 : Processing User Data\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \outl0\strokewidth0 ################################################################################################## code begins #######################################################################################################################################\outl0\strokewidth0 \strokec2 \
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 import org.apache.spark.sql.\{SparkSession, Encoder\}\
+import org.apache.spark.sql.functions._\
+case class User(id: Int, name: String, age: Int)\
+object DatasetProcessing \{\
+  def main(args: Array[String]): Unit = \{\
+    val spark = SparkSession.builder\
+      .appName("Dataset Processing")\
+      .master("local[*]")\
+      .getOrCreate()\
+    import spark.implicits._\
+    // Example data\
+    val userData = Seq(\
+      User(1, "Alice", 30),\
+      User(2, "Bob", 25),\
+      User(3, "Charlie", 35)\
+    )\
+    // Create Dataset of User objects\
+    val userDS = spark.createDataset(userData)\
+    // Filter users older than 25\
+    val filteredUsers = userDS.filter(_.age > 25)\
+    // Calculate average age\
+    val avgAge = userDS.agg(avg($"age").as("avg_age")).first().getDouble(0)\
+    // Show filtered users\
+    filteredUsers.show()\
+    // Print average age\
+    println(s"Average age: $avgAge")\
+    spark.stop()\
+  \}\
+\}\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \outl0\strokewidth0 ################################################################################################### code ends #########################################################################################################################################\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\b \cf0 \outl0\strokewidth0 \strokec2 Operators and Actions
+\f1\b0 :\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls3\ilvl0
+\f2\fs30 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 createDataset(userData)
+\f1\fs28 : Action to create a Dataset 
+\f2\fs30 userDS
+\f1\fs28  from a sequence of 
+\f2\fs30 User
+\f1\fs28  objects.\
+\ls3\ilvl0
+\f2\fs30 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 filter(_.age > 25)
+\f1\fs28 : Transformation to filter users older than 25.\
+\ls3\ilvl0
+\f2\fs30 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 agg(avg($"age").as("avg_age")).first().getDouble(0)
+\f1\fs28 : Transformation and action to calculate average age.\
+\ls3\ilvl0
+\f2\fs30 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 show()
+\f1\fs28 : Action to display filtered users.\
+\ls3\ilvl0
+\f2\fs30 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 println(s"Average age: $avgAge")
+\f1\fs28 : Action to print average age.\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\b\fs32 \cf0 \strokec2 Shared Operations and Actions\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f1\b0\fs28 \cf0 All three abstractions share common operations such as transformations (
+\f2\fs30 \strokec2 map
+\f1\fs28 \strokec2 , 
+\f2\fs30 \strokec2 filter
+\f1\fs28 \strokec2 , 
+\f2\fs30 \strokec2 groupBy
+\f1\fs28 \strokec2 , 
+\f2\fs30 \strokec2 agg
+\f1\fs28 \strokec2 ) and actions (
+\f2\fs30 \strokec2 count
+\f1\fs28 \strokec2 , 
+\f2\fs30 \strokec2 show
+\f1\fs28 \strokec2 , 
+\f2\fs30 \strokec2 saveAsTextFile
+\f1\fs28 \strokec2 , 
+\f2\fs30 \strokec2 write
+\f1\fs28 \strokec2 ). These operations and actions enable data processing, aggregation, and output operations in Spark.\
+\pard\tx720\pardeftab720\partightenfactor0
+\cf0 \outl0\strokewidth0 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \outl0\strokewidth0 \strokec2 \
+\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \
+}
