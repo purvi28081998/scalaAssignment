@@ -1,0 +1,3 @@
+v1
+{"path":"file:///Users/purvigupta/Desktop/apple-scala-training/assessment4-optional/Users/purvigupta/test/datasets/data/ServerHealthCheckPointCSV/metricName=cpu_usage_percentage/part-00000-104088a3-9f0a-47a4-b0b4-01d8b30da403.c000.csv","size":49,"isDir":false,"modificationTime":1719225680640,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///Users/purvigupta/Desktop/apple-scala-training/assessment4-optional/Users/purvigupta/test/datasets/data/ServerHealthCheckPointCSV/metricName=error_rate_percentage/part-00000-77d485f4-33e7-4dad-8a38-1594faecc446.c000.csv","size":49,"isDir":false,"modificationTime":1719225680650,"blockReplication":1,"blockSize":33554432,"action":"add"}

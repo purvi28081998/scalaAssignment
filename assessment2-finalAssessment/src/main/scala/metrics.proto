@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package example;
+
+// Define the ServerHealthCheck message
+message ServerHealthCheck {
+  string metricName = 1;
+  string value = 2;
+  string timestamp = 3;
+  string host = 4;
+  string region = 5;
+}

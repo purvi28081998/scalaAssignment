@@ -1,0 +1,3 @@
+v1
+{"path":"file:///Users/purvigupta/Desktop/apple-scala-training/assessment4-optional/Users/purvigupta/test/datasets/data/ServerHealthCheckPointCSV/metricName=network_throughput_mbps/part-00000-02d79406-5037-488b-a2e8-100a870148a3.c000.csv","size":51,"isDir":false,"modificationTime":1719225670684,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///Users/purvigupta/Desktop/apple-scala-training/assessment4-optional/Users/purvigupta/test/datasets/data/ServerHealthCheckPointCSV/metricName=response_time_ms/part-00000-6fedb9ea-caa4-4505-91ea-c6bf3d963494.c000.csv","size":50,"isDir":false,"modificationTime":1719225670693,"blockReplication":1,"blockSize":33554432,"action":"add"}
